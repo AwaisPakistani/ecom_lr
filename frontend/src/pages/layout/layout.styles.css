@@ -1,0 +1,47 @@
+/* Header */
+.header{
+    background-color: black;
+    padding:15px 25px 10px 15px;
+}
+.header a{
+    color: white;
+    margin: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+}
+.header a:hover{
+    background-color: blueviolet;
+}
+.header a:active{
+    background-color: blueviolet;
+}
+.header a .active{
+    background-color: blueviolet;
+}
+/* Sidebar */
+.sidebar{
+    background-color:rgb(49, 12, 12);
+    color: white;
+    padding: 15px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.sidebar ul li{
+    font-size: 20px;
+    padding: 10px;
+    list-style: none;
+}
+.sidebar ul li:hover{
+    padding: 10px;
+    background-color: blueviolet;
+}
+/* Footer */
+.footer{
+    background-color: rgb(163, 126, 131);
+    color: aliceblue;
+
+}
+/* Base */
+
+
