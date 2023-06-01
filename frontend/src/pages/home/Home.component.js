@@ -6,7 +6,7 @@ function Home(){
    
         return(
           <Base>
-              <h3>Dashboard</h3>
+              <h2>Dashboard</h2>
           </Base>
         );
 

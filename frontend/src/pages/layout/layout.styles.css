@@ -3,38 +3,35 @@
     background-color: black;
     padding:15px 25px 10px 15px;
 }
-.header a{
+.navbar a{
     color: white;
     margin: 30px;
     text-decoration: none;
     font-size: 20px;
-    padding: 10px;
+    
 }
-.header a:hover{
-    background-color: blueviolet;
+.navbar ul li a:hover{
+    color: blueviolet;
 }
-.header a:active{
-    background-color: blueviolet;
+.navbar a:active{
+    color: blueviolet;
 }
-.header a .active{
-    background-color: blueviolet;
-}
+
 /* Sidebar */
-.sidebar{
-    background-color:rgb(49, 12, 12);
-    color: white;
-    padding: 15px;
-    padding-right: 0px;
-    padding-left: 0px;
+.sidebar ul li a{
+   color: white;
 }
+
 .sidebar ul li{
-    font-size: 20px;
-    padding: 10px;
-    list-style: none;
+    color: white;
 }
+
 .sidebar ul li:hover{
-    padding: 10px;
-    background-color: blueviolet;
+    color: blue;
+    
+}
+.sidebar ul li a:hover{
+    color: blue;
 }
 /* Footer */
 .footer{
