@@ -30,10 +30,7 @@ const Header=()=>(
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link onClick={()=>{
-            sessionStorage.clear();
-
-          }}>Logout</Nav.Link>
+          <Nav.Link href="/logout">Logout</Nav.Link>
           <Nav.Link eventKey={2} href="#memes">
             Dank memes
           </Nav.Link>
