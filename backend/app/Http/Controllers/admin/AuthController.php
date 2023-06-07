@@ -33,7 +33,7 @@ class AuthController extends Controller
             'status'=>true,
             'user'=>$user,
             'access_token'=>$user->remember_token,
-            'message'=>'success'
+            'message'=>'You have logged in successfully'
         ]);
         }else{
             return response()->json([

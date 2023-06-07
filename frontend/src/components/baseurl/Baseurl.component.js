@@ -16,17 +16,24 @@ export default function Baseurl(){
         const userDetail = JSON.parse(userString);
         return userDetail;
     }
+    const getMessage=()=>{
+        const messageString = sessionStorage.getItem('message');
+        const messageDetail = JSON.parse(messageString);
+        return messageDetail;
+    }
 
     const [token,setToken]=useState(getToken());
     const [user,setUser]=useState(getUser());
+    const [message,setMessage]=useState(getMessage());
 
-    const saveToken=(user,token)=>{
+    const saveToken=(user,token,loginmessage)=>{
         sessionStorage.setItem('token',JSON.stringify(token));
         sessionStorage.setItem('user',JSON.stringify(user));
+        sessionStorage.setItem('message',JSON.stringify(loginmessage));
 
         setToken(token);
         setUser(user);
-        
+        setMessage(loginmessage);
         navigate('/');
     }
 
@@ -40,6 +47,7 @@ export default function Baseurl(){
         setToken:saveToken,
         token,
         user,
+        message,
         getToken,
         http
     }

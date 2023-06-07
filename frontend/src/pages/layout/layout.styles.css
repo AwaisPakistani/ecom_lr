@@ -3,14 +3,19 @@
     background-color: black;
     padding:15px 25px 10px 15px;
 }
-.navbar a{
-    color: white;
-    margin: 30px;
-    text-decoration: none;
-    font-size: 20px;
-    
+.navbar{
+    padding:10px 30px;
 }
-.navbar ul li a:hover{
+.navbar a{
+    color:white;
+    text-decoration: none;
+    font-size: 20px;   
+}
+.navbar .dropdown .dropdown-menu a{
+    color:blue;
+}
+
+.navbar a:hover{
     color: blueviolet;
 }
 .navbar a:active{

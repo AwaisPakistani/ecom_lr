@@ -17,7 +17,7 @@ export default function Login(){
        
         http.post('/login',{email:email,password:password}).then((res)=>{
           alert(res.data.message);
-           setToken(res.data.user,res.data.access_token);
+           setToken(res.data.user,res.data.access_token,res.data.message);
         })
     })
 

@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 
 const Header=()=>(
     
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="navbar">
    
       <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -38,6 +38,6 @@ const Header=()=>(
       </Navbar.Collapse>
     
   </Navbar>
-
+  
 );
 export default Header;
