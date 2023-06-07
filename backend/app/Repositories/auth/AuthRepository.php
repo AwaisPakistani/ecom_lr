@@ -15,15 +15,22 @@ class AuthRepository implements AuthInterface{
   }
   
   public function login(array $data){
-       if (Auth::guard('web')->attempt(['email'=>$data['email'],'password'=>$data['password']])) {
-            return response()->json([
-                'message'=>'success'
-            ]);
-        }else{
-            return response()->json([
-                'message'=>'error'
-            ]);
-        }
+    $user = User::where('email',$data['email'])->first();
+    if (Auth::guard('web')->attempt(['email'=>$data['email'],'password'=>$data['password']])) {
+      return response()->json([
+          'status'=>true,
+          'user'=>$user,
+          'access_token'=>$user->remember_token,
+          'message'=>'success'
+      ]);
+      }else{
+          return response()->json([
+              'status'=>false,
+              'user'=>'fail',
+              'access_token'=>'',
+              'message'=>'Your Email or Password is incorrent. So try again!'
+          ]);
+      }
   }
 
   public function register(array $data){

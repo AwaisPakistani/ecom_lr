@@ -32,11 +32,14 @@ class AuthController extends Controller
         return response()->json([
             'status'=>true,
             'user'=>$user,
+            'access_token'=>$user->remember_token,
             'message'=>'success'
         ]);
         }else{
             return response()->json([
                 'status'=>false,
+                'user'=>'fail',
+                'access_token'=>'',
                 'message'=>'Your Email or Password is incorrent. So try again!'
             ]);
         }

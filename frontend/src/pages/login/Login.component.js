@@ -16,6 +16,7 @@ export default function Login(){
     const loginSubmit=(()=>{
        
         http.post('/login',{email:email,password:password}).then((res)=>{
+          alert(res.data.message);
            setToken(res.data.user,res.data.access_token);
         })
     })

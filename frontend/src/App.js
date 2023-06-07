@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import React, {lazy, Suspense} from 'react';
 import './App.css';
-
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 import Baseurl from './components/baseurl/Baseurl.component';
+import { Routes,Route } from 'react-router-dom';
 const Home=lazy(()=>import('./pages/home/Home.component'));
 const Contact=lazy(()=>import('./pages/contact/Contact.component'));
 const About=lazy(()=>import('./pages/about/About.component'));
@@ -12,13 +11,15 @@ const Login=lazy(()=>import('./pages/login/Login.component'));
 const Logout=lazy(()=>import('./components/logout/Logout.component'));
 
 function App() {
-  // const {getToken} = Baseurl();
-  // if(!getToken()){
-  //   <Login/>
-  // }
+const {getToken} = Baseurl();
+
+  
+  if(!getToken()){
+    return <Login/>
+  }
   return (
     <div className="App">
-      <Router>
+      
       <Suspense fallback={<h1>Loading...</h1>}>
            <Routes>
              <Route path='/' element={<Home/>}/>
@@ -29,7 +30,7 @@ function App() {
              <Route path='/logout' element={<Logout/>}/>
            </Routes>
       </Suspense>
-      </Router>
+      
       
     </div>
   );
