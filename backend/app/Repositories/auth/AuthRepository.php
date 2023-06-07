@@ -3,10 +3,10 @@ namespace App\Repositories\auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Repositories\auth\AuthInterface;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
-
 
 class AuthRepository implements AuthInterface{
 
@@ -37,7 +37,8 @@ class AuthRepository implements AuthInterface{
    $user=  User::create([
       'name'=>$data['name'],
       'email'=>$data['email'],
-      'password'=>bcrypt($data['password'])
+      'password'=>bcrypt($data['password']),
+      'remember_token'=>Str::random(15)
     ]);
    return $user;
   }

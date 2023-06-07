@@ -9,6 +9,7 @@ use App\Repositories\auth\AuthInterface;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -51,7 +52,7 @@ class AuthController extends Controller
         $data= $request->all();
         $this->user->register($data);
         return response()->json([
-            'success'=>'Successfully Registered'
+            'message'=>'Successfully Registered'
         ]);
      }
 }

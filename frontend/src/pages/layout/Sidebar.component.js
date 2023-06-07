@@ -12,15 +12,24 @@ import {
     CDBIcon,
     CDBContainer
   } from 'cdbreact';
+  import Baseurl from "../../components/baseurl/Baseurl.component";
 import { NavLink } from "react-bootstrap";
 
 const Sidebar = () => {
+  const {user} = Baseurl();
     return (
        
 
           <CDBSidebar textColor="#fff" backgroundColor="#333">
             <CDBSidebarHeader prefix={<CDBIcon icon="bars" size="lg" />}>
-            USERNAME
+            {
+                user?
+                <>
+                
+                {user.name}
+
+                </>:null
+              }
             </CDBSidebarHeader>
   
             <CDBSidebarContent>
@@ -34,7 +43,7 @@ const Sidebar = () => {
                   }
                   icon="th-large"
                 >
-                    <NavLink href="/contact">
+                    <NavLink href="/">
                     Dashboard
                     </NavLink>
                   
@@ -47,7 +56,10 @@ const Sidebar = () => {
                     </CDBBadge>
                   }
                 >
-                  Components
+                  <NavLink href="/admins">
+                  Users
+                    </NavLink>
+                  
                 </CDBSidebarMenuItem>
 
                 

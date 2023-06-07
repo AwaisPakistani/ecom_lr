@@ -9,6 +9,7 @@ const About=lazy(()=>import('./pages/about/About.component'));
 const Register=lazy(()=>import('./pages/register/Register.component'));
 const Login=lazy(()=>import('./pages/login/Login.component'));
 const Logout=lazy(()=>import('./components/logout/Logout.component'));
+const Users=lazy(()=>import('./pages/users/Users.component'));
 
 function App() {
 const {getToken} = Baseurl();
@@ -25,7 +26,8 @@ const {getToken} = Baseurl();
              <Route path='/' element={<Home/>}/>
              <Route path='/about' element={<About/>}/>
              <Route path='/contact' element={<Contact/>}/>
-             <Route path='/register' element={<Register/>}/>
+             <Route path='/admin/register' element={<Register/>}/>
+             <Route path='/admins' element={<Users/>}/>
              <Route path='/admin/login' element={<Login/>}/>
              <Route path='/logout' element={<Logout/>}/>
            </Routes>
