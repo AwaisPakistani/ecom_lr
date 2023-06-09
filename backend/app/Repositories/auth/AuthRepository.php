@@ -43,6 +43,24 @@ class AuthRepository implements AuthInterface{
    return $user;
   }
 
+  public function edit($id){
+      $useredit = User::where('id',$id)->first();
+      return $useredit;
+  }
+
+  public function update(array $data,$id){
+    $edit =  User::where('id',$id)->update([
+      'name'=>$data['name'],
+      'email'=>$data['email']
+    ]);
+   return $edit;
+  }
+
+  public function delete($id){
+    $deleteuser = User::where('id',$id)->delete();
+    return $deleteuser;
+  }
+
   public function logout(){
     //
   }

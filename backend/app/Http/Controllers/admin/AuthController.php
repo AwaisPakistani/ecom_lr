@@ -44,15 +44,38 @@ class AuthController extends Controller
                 'message'=>'Your Email or Password is incorrent. So try again!'
             ]);
         }
+
+        
       
     }
     
-    public function register(RegisterRequest $request){
+    public function register(RegisterRequest $request)
+    {
         // $request->validated();
         $data= $request->all();
         $this->user->register($data);
         return response()->json([
             'message'=>'Successfully Registered'
         ]);
-     }
+    }
+    public function edit($id){
+        $user = $this->user->edit($id);
+        return response()->json([
+            'name'=>$user->name,
+            'email'=>$user->email
+        ]);
+    }
+    public function update(Request $request,$id){
+        $data= $request->all();
+        $this->user->update($data,$id);
+        return response()->json([
+            'msg'=>'Successfully Updated'
+        ]);
+    }
+    public function delete($id){
+        $this->user->delete($id);
+        return response()->json([
+            'msg'=>'Successfully deleted having'.$id
+        ]);
+    }
 }

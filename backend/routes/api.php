@@ -23,3 +23,8 @@ Route::post('register',[AuthController::class,'register'])->name('register');
 
 Route::get('admin/users',[AuthController::class,'index'])->name('users');
 
+Route::get('admin/edit/{id}',[AuthController::class,'edit'])->name('admin.edit');
+///admin/update/
+Route::put('admin/update/{id}',[AuthController::class,'update'])->name('admin.update');
+///admin/
+Route::delete('admin/{id}',[AuthController::class,'delete'])->name('admin.delete');

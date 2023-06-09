@@ -8,5 +8,11 @@ interface AuthInterface{
 
   public function register(array $data);
 
+  public function edit($id);
+
+  public function update(array $data,$id);
+
+  public function delete($id);
+
   public function logout();
 }

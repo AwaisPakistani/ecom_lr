@@ -29,7 +29,7 @@ export default function Register(){
     return(
         <Base>
                 
-          <section>
+          <section className="p-3"> 
              <div className="card">
                 <h3>Registration Form</h3>
                 <div className="form">
