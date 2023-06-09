@@ -7,11 +7,25 @@ use Illuminate\Support\Str;
 use App\Repositories\auth\AuthInterface;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
-
+use App\Http\Resources\UserResource;
 class AuthRepository implements AuthInterface{
 
   public function all(){
-     return User::get();
+     $users = User::select('id','name','email','created_at')->get();
+     return UserResource::collection($users);
+    // return $users->each(function($user){
+    //    return  date("d-m-Y", strtotime($user->created_at));
+    // });
+    // return $users->filter(function($user){
+    //    return $user->id < 5 ;
+    // });
+    // return $users->search(function($user){
+    //    return $user->email == 'admin@gmail.com';
+    // });
+    // $newDate = date("d-m-Y", strtotime($originalDate));
+    
+     
+      
   }
   
   public function login(array $data){
