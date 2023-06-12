@@ -1,7 +1,6 @@
 import React from "react";
 import './register.styles.css';
 import Base from "../layout/Base.Component";
-import { Button } from "react-bootstrap";
 import { useEffect,useState } from "react";
 import Baseurl from "../../components/baseurl/Baseurl.component";
 
@@ -12,13 +11,24 @@ export default function Register(){
     const [phone,setPhone] = useState('');
     const [password,setpassword] = useState('');
     const [confirmpassword,setConfirmpassword] = useState('');
+   
+    //Errors
+    const [nameError,setNameError] = useState('');
+    const [EmailError,setEmailError] = useState('');
+    const [PasswordError,setPasswordError] = useState('');
 
     const {http} = Baseurl();
     const registerAdmin=(()=>{
       
       http.post('/register',{name:name,email:email,role:role,phone:phone,password:password,confirmpassword:confirmpassword}).then((res)=>{
-         alert(res.data.message);
-      })
+         if(res.data.status===false){
+            setNameError(res.data.errors.name);
+            setEmailError(res.data.errors.email);
+            setPasswordError(res.data.errors.password);
+          }else{
+             alert(res.data.message);
+          }
+      });
 
       // http.post('/admin/register',{email:email,password:password}).then((res)=>{
       //    alert(res.data.message);
@@ -39,13 +49,15 @@ export default function Register(){
                      <div className="col-lg-6">
                      <div className="form-group">
                         <label>User Name</label>
-                         <input className="form-control" type="text" name="name" placeholder="Enter Username" onChange={e=>setName(e.target.value)} />
+                         <input className="form-control" type="text" name="name" placeholder="Enter Username" onChange={e=>setName(e.target.value)} /><br/>
+                         <span className="text-danger">{nameError}</span>
                      </div>
                      </div>
                      <div className="col-lg-6">
                      <div className="form-group">
                         <label>Email</label>
-                         <input className="form-control" type="email" name="email" placeholder="Enter Email"  onChange={e=>setEmail(e.target.value)} />
+                         <input className="form-control" type="email" name="email" placeholder="Enter Email"  onChange={e=>setEmail(e.target.value)} /><br/>
+                         <span className="text-danger">{EmailError}</span>
                      </div>
                      </div>
                    </div>
@@ -74,7 +86,8 @@ export default function Register(){
                     <div className="form-group">
                         <label>Password</label>
                          <input className="form-control" type="password" name="password" placeholder="Enter Password" 
-                         onChange={e=>setpassword(e.target.value)}/>
+                         onChange={e=>setpassword(e.target.value)}/><br/>
+                         <span className="text-danger">{PasswordError}</span>
                      </div>
                     </div>
                    </div>

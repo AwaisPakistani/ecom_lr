@@ -2,9 +2,10 @@ import React from "react";
 import { useEffect,useState } from "react";
 import './login.styles.css';
 import Baseurl from "../../components/baseurl/Baseurl.component";
-
+import { useNavigate } from "react-router";
 
 export default function Login(){
+const navigate = useNavigate();
     const mystyle = {
         paddingLeft: "2.5rem",
         paddingRight: "5rem"
@@ -13,11 +14,21 @@ export default function Login(){
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
 
+    // errors
+    const [EmailError,setEmailError] = useState('');
+    const [PasswordError,setPasswordError] = useState('');
     const loginSubmit=(()=>{
        
-        http.post('/login',{email:email,password:password}).then((res)=>{
-          alert(res.data.message);
-           setToken(res.data.user,res.data.access_token,res.data.message);
+        http.post('/login',{email:email,password:password}).then((res)=>{ 
+           if(res.data.status==false){
+             //alert(res.data.message);
+             setEmailError(res.data.errors.email);
+             setPasswordError(res.data.errors.password);
+             navigate('admin/login');
+           }else{
+            alert(res.data.message);
+            setToken(res.data.user,res.data.access_token,res.data.message);
+           }
         })
     })
 
@@ -58,7 +69,9 @@ export default function Login(){
               placeholder="Enter a valid email address"
               onChange={e=>setEmail(e.target.value)}
               />
-            <label className="form-label" for="form3Example3">Email address</label>
+              
+            <label className="form-label" for="form3Example3">Email address</label><br/>
+            <span className="text-danger">{EmailError}</span>
           </div>
 
        
@@ -67,7 +80,9 @@ export default function Login(){
               placeholder="Enter password"
               onChange={e=>setPassword(e.target.value)}
               />
-            <label className="form-label" for="form3Example4">Password</label>
+             
+            <label className="form-label" for="form3Example4">Password</label><br/>
+            <span className="text-danger">{PasswordError}</span>
           </div>
 
           <div className="d-flex justify-content-between align-items-center">

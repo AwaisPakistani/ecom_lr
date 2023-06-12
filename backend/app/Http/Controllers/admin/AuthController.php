@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\auth\AuthInterface;
@@ -28,22 +29,28 @@ class AuthController extends Controller
        //$request->validated();
        $data= $request->all();
        $this->user->login($data);
+    
        $user = User::where('email',$data['email'])->first();
-       if (Auth::guard('web')->attempt(['email'=>$data['email'],'password'=>$data['password']])) {
-        return response()->json([
-            'status'=>true,
-            'user'=>$user,
-            'access_token'=>$user->remember_token,
-            'message'=>'You have logged in successfully'
-        ]);
-        }else{
-            return response()->json([
-                'status'=>false,
-                'user'=>'fail',
-                'access_token'=>'',
-                'message'=>'Your Email or Password is incorrent. So try again!'
-            ]);
-        }
+        if (Auth::guard('web')->attempt(['email'=>$data['email'],'password'=>$data['password']])) {
+         return response()->json([
+             'status'=>true,
+             'user'=>$user,
+             'access_token'=>$user->remember_token,
+             'message'=>'You have logged in successfully'
+         ]);
+         }else{
+             return response()->json([
+                 'status'=>false,
+                 'user'=>'fail',
+                 'access_token'=>'',
+                 'message'=>'Your Email or Password is incorrent. So try again!'
+             ]);
+         }
+       
+       //$safe =$request->safe()->only(['email','password']);
+       
+       
+       
 
         
       

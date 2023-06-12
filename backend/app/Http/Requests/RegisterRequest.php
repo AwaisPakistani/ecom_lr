@@ -3,9 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Traits\ApiErrorResponse;
 class RegisterRequest extends FormRequest
 {
+    use ApiErrorResponse;
     /**
      * Determine if the user is authorized to make this request.
      */
