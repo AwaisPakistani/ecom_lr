@@ -12,7 +12,7 @@ const Base=({children})=>(
                <Sidebar/>
                </div>
                
-               <div class="col py-2 px-5 text-start">
+               <div className="col py-2 px-5 text-start">
                {children}
                </div>
                </div>

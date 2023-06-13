@@ -23,7 +23,6 @@ class AuthController extends Controller
         return response()->json([
             'users'=>$users
         ]);
-
     }
     public function login(LoginRequest $request){
        //$request->validated();
@@ -58,11 +57,11 @@ class AuthController extends Controller
     
     public function register(RegisterRequest $request)
     {
-        // $request->validated();
         $data= $request->all();
         $this->user->register($data);
         return response()->json([
-            'message'=>'Successfully Registered'
+            'status'=>true,
+            'message'=>'Registered Successfully'
         ]);
     }
     public function edit($id){

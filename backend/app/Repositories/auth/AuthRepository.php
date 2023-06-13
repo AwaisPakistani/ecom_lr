@@ -11,7 +11,7 @@ use App\Http\Resources\UserResource;
 class AuthRepository implements AuthInterface{
 
   public function all(){
-     $users = User::select('id','name','email','created_at')->get();
+     $users = User::get();
      return UserResource::collection($users);
     // return $users->each(function($user){
     //    return  date("d-m-Y", strtotime($user->created_at));
@@ -51,6 +51,8 @@ class AuthRepository implements AuthInterface{
    $user=  User::create([
       'name'=>$data['name'],
       'email'=>$data['email'],
+      'role'=>$data['role'],
+      'phone'=>$data['phone'],
       'password'=>bcrypt($data['password']),
       'remember_token'=>Str::random(15)
     ]);

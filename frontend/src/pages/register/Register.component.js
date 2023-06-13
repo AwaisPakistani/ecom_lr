@@ -4,6 +4,7 @@ import Base from "../layout/Base.Component";
 import { useEffect,useState } from "react";
 import Baseurl from "../../components/baseurl/Baseurl.component";
 
+
 export default function Register(){
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
@@ -15,26 +16,24 @@ export default function Register(){
     //Errors
     const [nameError,setNameError] = useState('');
     const [EmailError,setEmailError] = useState('');
+    const [RoleError,setRoleError] = useState('');
+    const [PhoneError,setPhoneError] = useState('');
     const [PasswordError,setPasswordError] = useState('');
-
+    const [successMsg,setSuccessmsg] = useState('');
     const {http} = Baseurl();
     const registerAdmin=(()=>{
-      
       http.post('/register',{name:name,email:email,role:role,phone:phone,password:password,confirmpassword:confirmpassword}).then((res)=>{
-         if(res.data.status===false){
+         if(res.data.status==false){
             setNameError(res.data.errors.name);
             setEmailError(res.data.errors.email);
+            setRoleError(res.data.errors.role);
+            setPhoneError(res.data.errors.phone);
             setPasswordError(res.data.errors.password);
-          }else{
-             alert(res.data.message);
-          }
-      });
-
-      // http.post('/admin/register',{email:email,password:password}).then((res)=>{
-      //    alert(res.data.message);
-      //     setToken(res.data.user,res.data.access_token,res.data.message);
-      //  })
-      
+            setSuccessmsg(res.data.message);
+         }else{
+            setSuccessmsg(res.data.message);
+         }
+      })
     })
     return(
         <Base>
@@ -42,6 +41,7 @@ export default function Register(){
           <section className="p-3"> 
              <div className="card">
                 <h3>Registration Form</h3>
+                <h2 className="text-success">{successMsg}</h2>
                 <div className="form">
                     
                    <form className="m-2 p-4">
@@ -71,13 +71,15 @@ export default function Register(){
                             <option value='admin'>Admin</option>
                             <option value="editor">Editor</option>
                             <option value="writer">Writer</option>
-                         </select>
+                         </select><br/>
+                         <span className="text-danger">{RoleError}</span>
                      </div>
                      </div>
                      <div className="col-lg-6">
                      <div className="form-group">
                         <label>Phone</label>
-                         <input type="tel" className="form-control"  name="phone" placeholder="Enter Phone" onChange={e=>setPhone(e.target.value)}/>
+                         <input type="tel" className="form-control"  name="phone" placeholder="Enter Phone" onChange={e=>setPhone(e.target.value)}/><br/>
+                         <span className="text-danger">{PhoneError}</span>
                      </div>
                      </div>
                    </div>
@@ -101,7 +103,8 @@ export default function Register(){
                      </div>
                      </div>
                      <div className="form-group">
-                        <button onClick={registerAdmin} className="btn btn-primary">Register</button>
+                        <button type="button"
+                         className="btn btn-primary" onClick={registerAdmin} >Register</button>
                      </div>
                    </form>
                 </div>

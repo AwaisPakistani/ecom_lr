@@ -11,10 +11,12 @@ const Register=lazy(()=>import('./pages/register/Register.component'));
 const Login=lazy(()=>import('./pages/login/Login.component'));
 const Logout=lazy(()=>import('./components/logout/Logout.component'));
 const Users=lazy(()=>import('./pages/users/Users.component'));
+const AddCategory=lazy(()=>import('./pages/categories/AddCategory.component'));
+const EditCategory=lazy(()=>import('./pages/categories/EditCategory.component'));
+const Category=lazy(()=>import('./pages/categories/Category.component'));
 function App() {
 const {getToken} = Baseurl();
 
-  
   if(!getToken()){
     return <Login/>
   }
@@ -32,9 +34,11 @@ const {getToken} = Baseurl();
              <Route path='/logout' element={<Logout/>}/>
              <Route path='/edituser/:id' element={<Edituser/>}/>
              <Route path='/showuser/:id' element={<View/>}/>
+             <Route path='/categories' element={<Category/>}/>
+             <Route path='/add/category' element={<AddCategory/>}/>
+             <Route path='/editcategory:id' element={<EditCategory/>}/>
            </Routes>
       </Suspense>
-      
       
     </div>
   );

@@ -14,7 +14,7 @@ import {
   } from 'cdbreact';
   import Baseurl from "../../components/baseurl/Baseurl.component";
 import { NavLink } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 const Sidebar = () => {
   const {user} = Baseurl();
     return (
@@ -43,9 +43,9 @@ const Sidebar = () => {
                   }
                   icon="th-large"
                 >
-                    <NavLink href="/">
+                    <Link to={{pathname:"/"}}>
                     Dashboard
-                    </NavLink>
+                    </Link>
                   
                 </CDBSidebarMenuItem>
                 <CDBSidebarMenuItem
@@ -56,9 +56,9 @@ const Sidebar = () => {
                     </CDBBadge>
                   }
                 >
-                  <NavLink href="/admins">
+                  <Link to={{pathname:"/admins"}}>
                   Users
-                    </NavLink>
+                    </Link>
                   
                 </CDBSidebarMenuItem>
 
@@ -71,7 +71,10 @@ const Sidebar = () => {
                   }
                   icon="th"
                 >
+                  <Link to={{pathname:"/categories"}}>
                   Categories
+                    </Link>
+                  
                 </CDBSidebarMenuItem>
                 <CDBSidebarMenuItem
                   suffix={

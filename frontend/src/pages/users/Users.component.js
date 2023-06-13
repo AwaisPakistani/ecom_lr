@@ -37,9 +37,10 @@ function Users(){
         
         <table className="table">
             <thead>
-                <th>ID</th>
+                <th>Sr#</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Created At</th>
                 <th>Action</th>
             </thead>
@@ -50,6 +51,7 @@ function Users(){
                      <td>{++index}</td>
                      <td>{obj.name}</td>
                      <td>{obj.email}</td>
+                     <td>{obj.role}</td>
                      <td>
                          {
                         obj.created_at
@@ -65,9 +67,10 @@ function Users(){
             }
             </tbody>
             <tfoot>
-                <th>ID</th>
+                <th>Sr#</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Created At</th>
                 <th>Action</th>
             </tfoot>
