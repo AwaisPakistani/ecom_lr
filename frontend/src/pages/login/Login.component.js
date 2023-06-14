@@ -26,7 +26,7 @@ const navigate = useNavigate();
              setPasswordError(res.data.errors.password);
              navigate('admin/login');
            }else{
-            alert(res.data.message);
+            //alert(res.data.message);
             setToken(res.data.user,res.data.access_token,res.data.message);
            }
         })

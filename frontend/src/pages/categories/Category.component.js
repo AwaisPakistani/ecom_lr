@@ -6,7 +6,7 @@ import Baseurl from "../../components/baseurl/Baseurl.component";
 import moment from 'moment';
 
 function Category(){
-    const {http} = Baseurl();
+    const {http,noapi_http} = Baseurl();
     const [category,setCategory] = useState([]);
     const imgstyle={
       "width":"50px",
@@ -57,7 +57,7 @@ function Category(){
                       <td>{++index}</td>
                       <td>{obj.name}</td>
                       <td>
-                        <img style={imgstyle} src={"http://127.0.0.1:8000/"+obj.image} />
+                        <img style={imgstyle} src={noapi_http+obj.image} />
                         
                       </td>
                       <td>

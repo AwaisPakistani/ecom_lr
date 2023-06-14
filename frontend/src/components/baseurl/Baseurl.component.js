@@ -43,12 +43,14 @@ export default function Baseurl(){
             "Content-type" : "application/json"
         }
     });
+    const noapi_http = 'http://127.0.0.1:8000/';
     return {
         setToken:saveToken,
         token,
         user,
         message,
         getToken,
+        noapi_http,
         http
     }
 }

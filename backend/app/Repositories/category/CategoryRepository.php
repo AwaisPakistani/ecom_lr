@@ -24,7 +24,7 @@ class CategoryRepository implements CategoryInterface{
         //$file = $data['image']
         $getimage = $data['image'];
         $image = $getimage->getClientOriginalName();
-        //$file = $data['image']->storeAs('images/admin/categories',$image,'public'); // To move in storage
+        //$file = $data['image']->storeAs('images/admin/categories',$image,'public'); // To move in public
         $file = $getimage->move('images/admin/categories/',$image);// To move in public
         $category=  Category::create([
             'name'=>$data['name'],
@@ -34,14 +34,38 @@ class CategoryRepository implements CategoryInterface{
     }
     
     public function show($id){
-
+        $category = Category::where('id',$id)->first();
+        return $category;
     }
     
     public function edit($id){
-
+        $category = Category::where('id',$id)->first();
+        return $category;
     }
 
     public function update(array $data,$id){
+            $category = Category::where('id',$id)->first();
+        
+            $getimage = $data['image'];
+            $image = $getimage->getClientOriginalName();
+            $file = $getimage->move('images/admin/categories/',$image);
+            $update_category=  Category::where('id',$id)->update([
+                'name'=>$data['name'],
+                'image'=>$file
+            ]);
+            
+        
+            return $update_category;
+    }
 
+    public function destroy($id){
+        $imagepath=Category::where('id',$id)->first();
+        $path=$imagepath->image;
+        if(file_exists($path)){
+            unlink($path);
+        }
+        
+        return $category = Category::where('id',$id)->delete();
+        
     }
 }

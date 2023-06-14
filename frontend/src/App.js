@@ -14,6 +14,7 @@ const Users=lazy(()=>import('./pages/users/Users.component'));
 const AddCategory=lazy(()=>import('./pages/categories/AddCategory.component'));
 const EditCategory=lazy(()=>import('./pages/categories/EditCategory.component'));
 const Category=lazy(()=>import('./pages/categories/Category.component'));
+const Showcategory=lazy(()=>import('./pages/categories/Showcategory.component'));
 function App() {
 const {getToken} = Baseurl();
 
@@ -36,7 +37,8 @@ const {getToken} = Baseurl();
              <Route path='/showuser/:id' element={<View/>}/>
              <Route path='/categories' element={<Category/>}/>
              <Route path='/add/category' element={<AddCategory/>}/>
-             <Route path='/editcategory:id' element={<EditCategory/>}/>
+             <Route path='/editcategory/:id' element={<EditCategory/>}/>
+             <Route path='/showcategory/:id' element={<Showcategory/>}/>
            </Routes>
       </Suspense>
       

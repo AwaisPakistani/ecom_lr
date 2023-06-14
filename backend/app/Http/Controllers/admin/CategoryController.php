@@ -55,30 +55,50 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = $this->category->show($id);
+
+        return response()->json([
+          'name'=>$category->name,
+          'image'=>$category->image
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $category = $this->category->edit($id);
+
+        return response()->json([
+            'name'=>$category->name,
+            'image'=>$category->image
+          ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
-        //
+        $data= $request->all();
+        
+        $this->category->update($data,$id);
+        return response()->json([
+            'status'=>true,
+            'message'=>'Category updated Successfully'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $this->category->destroy($id);
+        return response()->json([
+         'status'=>true,
+         'message'=>'Category having id='. $id.' has successfully deleted'
+        ]);
     }
 }
